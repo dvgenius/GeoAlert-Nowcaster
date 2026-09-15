@@ -20,10 +20,6 @@ GeoAlert Nowcaster is an AI-powered early warning system designed to predict sev
 
 ## Setup & Local Run
 ```bash
-# Clone the repository
-git clone [https://github.com/](https://github.com/)<your-username>/<your-repo-name>.git
-cd <your-repo-name>
-
 # Backend
 cd backend
 pip install -r requirements.txt
