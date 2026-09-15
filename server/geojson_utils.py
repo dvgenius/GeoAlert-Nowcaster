@@ -108,7 +108,7 @@ def create_nowcast_feature_collection(
     lat_min, lat_max, lon_min, lon_max = bounds
     all_features = []
 
-    # Priority ordering: Cloudburst & Flash Flood take front precedence
+    
     for hazard_name in ["cloudburst", "flash_flood", "thunderstorm"]:
         if hazard_name in hazard_maps:
             feats = raster_to_geojson_features(
