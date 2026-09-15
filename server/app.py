@@ -20,23 +20,13 @@ app = FastAPI(
     version="1.1.0"
 )
 
-# CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://geo-alert-nowcaster.vercel.app",
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:5175",
-        "http://127.0.0.1:5173",
-        "http://127.0.0.1:5175",
-    ],
-    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_origins=["*"],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
-
 INDIA_LAT_MIN, INDIA_LAT_MAX = 6.0, 37.0
 INDIA_LON_MIN, INDIA_LON_MAX = 68.0, 98.0
 GRID_SIZE = 64
