@@ -1,0 +1,11 @@
+torch
+numpy
+rasterio
+xarray
+netCDF4
+fastapi
+uvicorn
+captum
+pydantic
+shapely
+scipy
