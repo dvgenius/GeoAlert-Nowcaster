@@ -22,12 +22,22 @@ app = FastAPI(
     description="Hyper-Local AI Early Warning System for Severe Weather Nowcasting with Pan-India Bounding Boxes",
     version="1.1.0"
 )
+from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=[
+        "https://geo-alert-nowcaster.vercel.app",
+        "https://geo-alert-nowcaster-o2n0zc2dz-dvgenius-9874s-projects.vercel.app",
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:5175",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5175",
+    ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
