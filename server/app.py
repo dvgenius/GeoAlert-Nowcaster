@@ -31,17 +31,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global model and explainer instances
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model: Optional[MultiTaskWeatherNowcaster] = None
 explainer: Optional[WeatherExplainer] = None
 
-# Pan-India Geographic Boundaries
+
 INDIA_LAT_MIN, INDIA_LAT_MAX = 6.0, 37.0
 INDIA_LON_MIN, INDIA_LON_MAX = 68.0, 98.0
 GRID_SIZE = 64
 
-# Pre-configured Regional Presets for Hackathon Demos
+
 REGION_PRESETS: Dict[str, Dict[str, Any]] = {
     "uttarakhand": {
         "preset_id": "uttarakhand",
@@ -199,7 +199,7 @@ def resolve_bounding_box(
                 detail="All 4 coordinates (min_lat, max_lat, min_lon, max_lon) must be provided for custom bounding box."
             )
         
-        # Validate India Bounding Limits
+        
         if not (INDIA_LAT_MIN <= min_lat < max_lat <= INDIA_LAT_MAX):
             raise HTTPException(
                 status_code=422,
@@ -229,7 +229,7 @@ def resolve_bounding_box(
         }
         return bounds, meta
 
-    # 2. Preset provided or default to 'uttarakhand'
+
     preset_key = (region or "uttarakhand").strip().lower()
     if preset_key not in REGION_PRESETS:
         available = ", ".join(list(REGION_PRESETS.keys()))
@@ -264,7 +264,7 @@ def get_nowcast_prediction(
     if model is None or explainer is None:
         raise HTTPException(status_code=503, detail="AI Model engine is not yet initialized.")
 
-    # 1. Resolve and validate bounding box coordinates
+    
     bounds, region_meta = resolve_bounding_box(
         region=region,
         min_lat=min_lat,
@@ -276,7 +276,7 @@ def get_nowcast_prediction(
     lat_step = (lat_max - lat_min) / GRID_SIZE
     lon_step = (lon_max - lon_min) / GRID_SIZE
 
-    # 2. Synthesize regional terrain & atmospheric fields
+    
     dem = synthesize_regional_topography(
         dem_base=region_meta["dem_base"],
         dem_scale=region_meta["dem_scale"],
@@ -293,7 +293,7 @@ def get_nowcast_prediction(
     else:
         iwv, cape, cin, ctt_series = atm_fields
 
-    # Lead-time dynamic scaling
+    
     if lead_time_hours <= 2.5:
         intensity = 0.90
     elif lead_time_hours <= 4.5:
