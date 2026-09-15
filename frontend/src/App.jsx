@@ -8,7 +8,7 @@ import XaiDrawer from './components/XaiDrawer';
 import ActionProtocols from './components/ActionProtocols';
 import { RefreshCw, Activity, Database, Satellite, Server, Compass } from 'lucide-react';
 
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = 'import.meta.env.VITE_API_BASE_URL || "https://geoalert-nowcaster.onrender.com"';
 
 export default function App() {
   const [region, setRegion] = useState('uttarakhand');
