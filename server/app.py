@@ -40,7 +40,25 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+import os
+import gc
 
+# 1. Prevent thread explosion & disable GUI backend before importing matplotlib/torch
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["MPLBACKEND"] = "Agg"
+
+import torch
+torch.set_num_threads(1)
+
+# Inside your nowcast prediction endpoint (e.g., get_nowcast_prediction):
+# Ensure model inference runs strictly with no gradient tracking:
+with torch.no_grad():
+    # ... your model forward pass ...
+    pass
+
+# Run memory cleanup at the end of the endpoint before returning response
+gc.collect()
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model: Optional[MultiTaskWeatherNowcaster] = None
