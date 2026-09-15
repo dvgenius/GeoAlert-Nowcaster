@@ -2,7 +2,7 @@
 FastAPI Server for AI-Driven Hyper-Local Early Warning Nowcasting
 Supports Dynamic Pan-India Bounding Boxes & Regional Presets for Hackathon Testing
 """
-
+from fastapi.middleware.cors import CORSMiddleware
 import os
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional, Tuple
