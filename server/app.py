@@ -191,7 +191,7 @@ def resolve_bounding_box(
     Validates and resolves region preset or custom bounding coordinates.
     Returns: (lat_min, lat_max, lon_min, lon_max), region_meta
     """
-    # 1. Custom bounding coordinates provided
+    
     if any(param is not None for param in [min_lat, max_lat, min_lon, max_lon]):
         if None in [min_lat, max_lat, min_lon, max_lon]:
             raise HTTPException(
@@ -355,7 +355,7 @@ def get_nowcast_prediction(
             f"Atmospheric parameters within nominal thresholds across {region_meta['label']}. Radar telemetry active."
         )
 
-    # 5. Captum XAI Attribution
+    
     xai_results = explainer.attribute(x_batch, target_hazard="cloudburst", n_steps=10)
     channel_breakdown = xai_results["channel_breakdown"]
     dominant_factor = max(channel_breakdown.items(), key=lambda item: item[1]["percentage"])
@@ -366,7 +366,7 @@ def get_nowcast_prediction(
         f"Topographic profile ({region_meta['topography_type']}) accelerates convective funneling."
     )
 
-    # 6. Dynamically Scaled GeoJSON Polygons
+
     geojson_data = create_nowcast_feature_collection(
         hazard_maps=hazard_maps,
         bounds=bounds,
