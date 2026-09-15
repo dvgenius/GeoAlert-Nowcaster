@@ -8,7 +8,7 @@ import XaiDrawer from './components/XaiDrawer';
 import ActionProtocols from './components/ActionProtocols';
 import { RefreshCw, Activity, Database, Satellite, Server, Compass } from 'lucide-react';
 
-const API_BASE = 'import.meta.env.VITE_API_BASE_URL || "https://geoalert-nowcaster.onrender.com"';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://geoalert-nowcaster.onrender.com";
 
 export default function App() {
   const [region, setRegion] = useState('uttarakhand');
@@ -78,7 +78,7 @@ export default function App() {
             <div className="flex items-center gap-2">
               <Server className="w-4 h-4 text-amber-400" />
               <span>
-                Connecting to FastAPI backend at <code className="font-mono bg-amber-950/60 px-1.5 py-0.5 rounded">http://127.0.0.1:8000</code>...
+                Connecting to FastAPI backend at <code className="font-mono bg-amber-950/60 px-1.5 py-0.5 rounded">{API_BASE}</code>...
               </span>
             </div>
             <button
