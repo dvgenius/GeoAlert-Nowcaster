@@ -1,6 +1,7 @@
 # GeoAlert Nowcaster — Hyper-Local Severe Weather Nowcasting
-**Team ID:** KT-2132 | **Team Name:** NowCast  
-**Event:** Hackathon Software (Submission: September 2026)
+**Team ID:** KT-2132 
+**Team Name:** NowCast  
+**Event:** Hackathon Software
 
 ## Overview
 GeoAlert Nowcaster is an AI-powered early warning system designed to predict severe thunderstorms, cloudbursts, and flash floods simultaneously with a 2 to 6-hour actionable lead time and sub-200 ms inference latency.
