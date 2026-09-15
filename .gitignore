@@ -8,3 +8,4 @@ build/
 *.log
 .vscode/
 "@ | Out-File -FilePath .gitignore -Encoding utf8
+.antigravityrules
